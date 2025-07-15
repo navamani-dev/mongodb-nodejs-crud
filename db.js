@@ -1,21 +1,20 @@
 const mongodb = require('mongodb');
 const MongoClient = mongodb.MongoClient;
 const ObjectID = mongodb.ObjectId;
-
 let database;
+// console.log("out")
+async function getdatabase() {
+    // console.log("in")
 
-async function getDatabase(){
-    const client = await MongoClient.connect('mongodb://127.0.0.1:27017');
-    database = client.db('library');
-
-    if (!database) {
-            console.log('Database not connected');
-    }
-
+    const client =await MongoClient.connect('mongodb://localhost:27017');
+    database =  client.db('library');
+    if (!database){
+        console.log("database not connected")
+    } 
+    // console.log(database);
+    console.log("database is connected");
+    
     return database;
 }
 
-module.exports = {
-    getDatabase,
-    ObjectID
-}
+module.exports = {getdatabase, ObjectID}
